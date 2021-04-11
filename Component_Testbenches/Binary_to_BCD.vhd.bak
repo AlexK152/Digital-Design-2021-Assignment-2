@@ -2,7 +2,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-
+use work.Array_package.all;
 
 entity Bin_BCD is
 port (
@@ -13,8 +13,7 @@ end;
 
 
 architecture looped of Bin_BCD is
-
-type BCD_ARRAY_TYPE is array (integer range<>) of std_logic_vector(3 downto 0);
+    begin
 
     Binary_to_BCD: process(binary_in)
 

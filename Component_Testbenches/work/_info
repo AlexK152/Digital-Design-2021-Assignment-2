@@ -11,7 +11,7 @@ dD:/ModelSim Projects/Assignment_2
 Pbcdarray
 Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z1 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-w1618066862
+w1618108956
 Z2 dD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches
 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd
 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd
@@ -21,16 +21,16 @@ V0c[La2RG3dVQ3:QB_SGi12
 !s100 beIe1<dY>K?TE3^kg:mgY2
 Z3 OP;C;10.4a;61
 32
-!s110 1618066865
+!s110 1618108963
 !i10b 1
-!s108 1618066865.000000
+!s108 1618108963.000000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd|
 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd|
 !i113 1
 Z4 o-work work -2002 -explicit -O0
 Z5 tExplicit 1
 Ebin_bcd
-Z6 w1618068691
+Z6 w1618109104
 Z7 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 R0
 R1
@@ -43,9 +43,9 @@ V<2HhzFl6zO`n5j;:5YL080
 !s100 CHTmTVB^Y1a_iAlcb>RKO0
 R3
 32
-Z10 !s110 1618068694
+Z10 !s110 1618109108
 !i10b 1
-Z11 !s108 1618068694.000000
+Z11 !s108 1618109108.000000
 Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd|
 Z13 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd|
 !i113 1
@@ -55,7 +55,7 @@ Alooped
 R7
 R0
 R1
-DEx4 work 7 bin_bcd 0 22 <2HhzFl6zO`n5j;:5YL080
+Z14 DEx4 work 7 bin_bcd 0 22 <2HhzFl6zO`n5j;:5YL080
 l16
 L15
 VcRA0Z7COe^]g29@aL<ld`0
@@ -67,6 +67,48 @@ R10
 R11
 R12
 R13
+!i113 1
+R4
+R5
+Etb_bin_bcd
+Z15 w1618112402
+R7
+R0
+R1
+R2
+Z16 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Z17 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+l0
+L6
+VfIPXDHP]gHVLP2Q7E7Xk91
+!s100 C3IiOblZi``IT:KfCecYB3
+R3
+32
+Z18 !s110 1618112406
+!i10b 1
+Z19 !s108 1618112406.000000
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+Z21 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+!i113 1
+R4
+R5
+Atb
+R14
+R7
+R0
+R1
+Z22 DEx4 work 10 tb_bin_bcd 0 22 fIPXDHP]gHVLP2Q7E7Xk91
+l25
+L10
+V:Y2dPa[]3cQ3gQ34>8dgb1
+!s100 hXDXV<lbgRFb_>9E?9oM?0
+R3
+32
+R18
+!i10b 1
+R19
+R20
+R21
 !i113 1
 R4
 R5
