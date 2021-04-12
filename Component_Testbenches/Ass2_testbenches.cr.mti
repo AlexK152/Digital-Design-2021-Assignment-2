@@ -1,12 +1,18 @@
-D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd
+D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd {1 {vcom -work xil_defaultlib -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package common_pack
+
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Loading package common_pack
--- Compiling entity dataConsume
--- Compiling architecture struct of dataConsume
+-- Compiling entity Count_Comparator
+-- Compiling architecture simple of Count_Comparator
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
@@ -25,22 +31,33 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading package std_logic_1164
 -- Compiling package bcdArray
 
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/BCD_to_binary.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/BCD_to_binary.vhd
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/FSM_logic.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/FSM_logic.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity FSM_logic
+-- Compiling architecture simple of FSM_logic
+
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity PrimCount_w_lock
+-- Compiling architecture simple of PrimCount_w_lock
+
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package common_pack
--- Compiling entity BCD_bin
--- Compiling architecture simple of BCD_bin
-
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd {1 {vcom -work xil_defaultlib -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling package common_pack
+-- Compiling entity dataConsume
+-- Compiling architecture struct of dataConsume
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
@@ -54,23 +71,26 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling architecture w_array of Bin_BCD
 -- Loading entity Bin_BCD
 
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/BCD_to_binary.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/BCD_to_binary.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity Count_Comparator
--- Compiling architecture simple of Count_Comparator
+-- Loading package common_pack
+-- Compiling entity BCD_bin
+-- Compiling architecture simple of BCD_bin
 
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity PrimCount_w_lock
--- Compiling architecture simple of PrimCount_w_lock
+-- Loading package common_pack
+-- Compiling entity tb_Bin_BCD
+-- Compiling architecture tb of tb_Bin_BCD
+-- Loading entity Bin_BCD
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
@@ -83,15 +103,18 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling architecture tb of tb_BCD_bin
 -- Loading entity BCD_bin
 
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package common_pack
--- Compiling entity tb_Bin_BCD
--- Compiling architecture tb of tb_Bin_BCD
+-- Compiling entity tb_right_combined
+-- Compiling architecture tb of tb_right_combined
+-- Loading entity PrimCount_w_lock
+-- Loading entity BCD_bin
 -- Loading entity Bin_BCD
+-- Loading entity Count_Comparator
 
 } {} {}}
