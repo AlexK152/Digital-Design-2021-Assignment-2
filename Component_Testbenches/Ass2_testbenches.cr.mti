@@ -8,6 +8,16 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling entity dataConsume
 -- Compiling architecture struct of dataConsume
 
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity tb_PrimCount
+-- Compiling architecture tb of tb_PrimCount
+-- Loading entity PrimCount_w_lock
+
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
@@ -43,6 +53,15 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling architecture looped of Bin_BCD
 -- Compiling architecture w_array of Bin_BCD
 -- Loading entity Bin_BCD
+
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Count_Comparator.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Count_Comparator
+-- Compiling architecture simple of Count_Comparator
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015

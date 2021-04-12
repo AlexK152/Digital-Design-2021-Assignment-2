@@ -406,12 +406,12 @@ begin
     end process;
 
 
-    CountComparator: process(counter1_out, numWords_bin)
+    CountComparator: process(counter1_out_lock, numWords_bin)
     variable result_flag: std_logic;
     variable counter1_out_bin: std_logic_vector(9 downto 0);
     begin
         result_flag := '0';
-        counter1_out_bin := std_logic_vector(to_unsigned(counter1_out, counter1_out_bin'length));
+        counter1_out_bin := std_logic_vector(to_unsigned(counter1_out_lock, counter1_out_bin'length));
         for i in 0 to 9 loop
             if  not (counter1_out_bin(i) = numWords_bin(i)) then
                 result_flag := '1';
