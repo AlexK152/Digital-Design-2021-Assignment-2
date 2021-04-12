@@ -1,20 +1,26 @@
-D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd {0 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd
+D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
-** Error: D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd(4): Library xil_defaultlib not found.
-** Error: D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd(5): (vcom-1136) Unknown identifier "xil_defaultlib".
+-- Loading package common_pack
+-- Compiling entity dataConsume
+-- Compiling architecture struct of dataConsume
 
-** Error: D:/GitHub/Digital-Design-2021-Assignment-2/dataProc.vhd(8): VHDL Compiler exiting
-
-} {7.0 9.0 10.0 11.0} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Array_package.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling package bcdArray
+
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd {1 {vcom -work xil_defaultlib -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package common_pack
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015

@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 library xil_defaultlib;
 use xil_defaultlib.common_pack.all;
+--use ieee.std_logic_arith.all;
 
 entity dataConsume is
 port (
