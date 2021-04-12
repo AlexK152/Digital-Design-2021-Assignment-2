@@ -450,12 +450,12 @@ begin
             end if;
             if to_integer(ones) > 4 then
                 ones := ones + 3;
+            end if;
 
             hundreds := hundreds(2 downto 0) & tens(3);
             tens := tens(2 downto 0) & ones(3);
             ones := ones(2 downto 0) & binaryInput(9-i);
 
-            end if;
         end loop;
         maxIndex(2) <= std_logic_vector(hundreds);
         maxIndex(1) <= std_logic_vector(tens);

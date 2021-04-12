@@ -1,6 +1,8 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+library xil_defaultlib;
+use xil_defaultlib.common_pack.all;
 
 
 entity tb_Bin_BCD is
@@ -13,17 +15,19 @@ architecture tb of tb_Bin_BCD is
     port (
         binary_in: in std_logic_vector(9 downto 0);
         BCD_out: out std_logic_vector(11 downto 0);
-        i_sig: out integer range 0 to 10
+        i_sig: out integer range 0 to 10;
+        maxIndex: out BCD_ARRAY_TYPE(2 downto 0)
         );
     end component;
 
-    FOR BCD1: Binary_to_BCD USE ENTITY work.Bin_BCD(looped);
+    FOR BCD1: Binary_to_BCD USE ENTITY work.Bin_BCD(w_array);
 
     signal clk: std_logic := '0';
     signal binary_in: std_logic_vector(9 downto 0);
     signal BCD_out: std_logic_vector(11 downto 0);
     signal i_sig: integer range 0 to 10;
     signal i_sig_vector: std_logic_vector(3 downto 0);
+    signal maxIndex: BCD_ARRAY_TYPE(2 downto 0);
 
 begin
 
@@ -35,7 +39,8 @@ begin
         port map(
             binary_in => binary_in,
             BCD_out => BCD_out,
-            i_sig => i_sig
+            i_sig => i_sig,
+            maxIndex => maxIndex
         );
     
 

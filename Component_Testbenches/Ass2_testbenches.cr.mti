@@ -15,6 +15,18 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading package std_logic_1164
 -- Compiling package bcdArray
 
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package common_pack
+-- Compiling entity Bin_BCD
+-- Compiling architecture looped of Bin_BCD
+-- Compiling architecture w_array of Bin_BCD
+-- Loading entity Bin_BCD
+
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd {1 {vcom -work xil_defaultlib -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/common_pack.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
@@ -22,21 +34,13 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading package std_logic_1164
 -- Compiling package common_pack
 
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/Binary_to_BCD.vhd
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity Bin_BCD
--- Compiling architecture looped of Bin_BCD
-
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
+-- Loading package common_pack
 -- Compiling entity tb_Bin_BCD
 -- Compiling architecture tb of tb_Bin_BCD
 -- Loading entity Bin_BCD
