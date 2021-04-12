@@ -178,26 +178,67 @@ R30
 !i113 1
 R13
 R14
+Eprimcount
+Z31 w1618240080
+R2
+R3
+R4
+R5
+Z32 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+Z33 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+l0
+L6
+VTcd5CD0aJOoZJ<Y^]H:[M1
+!s100 mzQLJL8;U_mS38C5NiD901
+R8
+32
+Z34 !s110 1618241500
+!i10b 1
+Z35 !s108 1618241499.000000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
+Z37 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
+!i113 1
+R13
+R14
+Asimple
+R2
+R3
+R4
+Z38 DEx4 work 9 primcount 0 22 Tcd5CD0aJOoZJ<Y^]H:[M1
+l17
+L16
+V=oZnGaDQ=hWojlPKVo7<03
+!s100 zhGbF0Jz2z0JI65m9F@Tc3
+R8
+32
+R34
+!i10b 1
+R35
+R36
+R37
+!i113 1
+R13
+R14
 Etb_bcd_bin
-Z31 w1618237513
+Z39 w1618237513
 R1
 R2
 R3
 R4
 R5
-Z32 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
-Z33 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
+Z40 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
+Z41 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
 l0
 L8
 VKXo0bPdG@TBZJ65WI;Wga2
 !s100 [K9_DmQ^B=F@QAJ@J;PH;2
 R8
 32
-Z34 !s110 1618237516
+Z42 !s110 1618237516
 !i10b 1
-Z35 !s108 1618237516.000000
-Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
-Z37 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
+Z43 !s108 1618237516.000000
+Z44 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
+Z45 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
 !i113 1
 R13
 R14
@@ -214,34 +255,34 @@ V[n0I=egQBikHW<nI[QjmI3
 !s100 mSYP:zQl[[RhE7N]BWPZ02
 R8
 32
-R34
+R42
 !i10b 1
-R35
-R36
-R37
+R43
+R44
+R45
 !i113 1
 R13
 R14
 Etb_bin_bcd
-Z38 w1618231988
+Z46 w1618231988
 R1
 R2
 R3
 R4
 R5
-Z39 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
-Z40 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Z47 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Z48 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
 l0
 L8
 Vf<5BDeg1T19PLn<j6mE]`1
 !s100 D=6C^0=QAmA2d[D@VS?hD3
 R8
 32
-Z41 !s110 1618231991
+Z49 !s110 1618231991
 !i10b 1
-Z42 !s108 1618231991.000000
-Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
-Z44 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+Z50 !s108 1618231991.000000
+Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+Z52 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
 !i113 1
 R13
 R14
@@ -258,11 +299,53 @@ VHQdo[E0^PB740ICcKA1iK2
 !s100 8`2=;O_ZM?AHU^Q2_@fZ83
 R8
 32
-R41
+R49
 !i10b 1
-R42
-R43
-R44
+R50
+R51
+R52
+!i113 1
+R13
+R14
+Etb_primcount
+Z53 w1618241897
+R2
+R3
+R4
+R5
+Z54 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
+Z55 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
+l0
+L6
+V0_5a3fSm^Y]Jjae5B^_JR3
+!s100 I1<A2[nM@zBd]E91CH`5=1
+R8
+32
+Z56 !s110 1618241899
+!i10b 1
+Z57 !s108 1618241899.000000
+Z58 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
+Z59 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
+!i113 1
+R13
+R14
+Atb
+R38
+R2
+R3
+R4
+Z60 DEx4 work 12 tb_primcount 0 22 0_5a3fSm^Y]Jjae5B^_JR3
+l27
+L10
+V::2[F=5_7S0<=iC=cgnLz0
+!s100 >O^EC=h08CE7f[cW1_1mL1
+R8
+32
+R56
+!i10b 1
+R57
+R58
+R59
 !i113 1
 R13
 R14
