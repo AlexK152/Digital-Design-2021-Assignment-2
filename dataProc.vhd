@@ -223,7 +223,7 @@ architecture struct of dataConsume is
 type state_type is (Idle, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
                     CommPause, GenPause, IncreaseCount, CheckCount2, EndSeq);
 signal curState, nextState: state_type;
-signal equal_true, ctrl_2_delayed, ctrl_2_detected: std_logic;
+signal ctrl_2_delayed, ctrl_2_detected: std_logic;
 signal counter2_out: std_logic_vector(1 downto 0);
 signal counter1_enable, counter2_enable, shiftReg_enable, ctrl_1_change, resetMemElements: std_logic; -- Signals driven by FSM output logic
 signal ctrl_1_not,ctrl_1_int, mux_out: std_logic;
@@ -239,7 +239,7 @@ signal data1: std_logic_vector(7 downto 0);
 signal data2, Output_bytes: std_logic_vector(55 downto 0);
 
 begin
-    combi_nextState: process(curState, start, equal_true, counter2_out, ctrl_2_detected)
+    combi_nextState: process(curState, start, equalTrue, counter2_out, ctrl_2_detected)
         begin
             case curState is
                 when Idle =>
@@ -253,7 +253,7 @@ begin
                     nextState <= CheckCount1;
 
                 when CheckCount1 =>
-                    if equal_true = '1' then
+                    if equalTrue = '1' then
                         nextState <= CheckCount2;
                     else
                         nextState <= RequestByte;
@@ -263,7 +263,7 @@ begin
                     nextState <= GenPause;
 
                 when EnableShiftReg =>
-                    if equal_true = '1' then
+                    if equalTrue = '1' then
                         nextState <= IncreaseCount;
                     else
                         nextState <= CommPause;
@@ -284,7 +284,7 @@ begin
                     end if;
 
                 when IncreaseCount =>
-                    if equal_true = '1' then
+                    if equalTrue = '1' then
                         nextState <= CheckCount2;
                     else
                         nextState <= CheckCount1;
@@ -303,7 +303,7 @@ begin
         end process;
 
 
-    combi_out: process(curState, equal_true)
+    combi_out: process(curState, equalTrue)
     begin
         counter1_enable <= '0';
         counter2_enable <= '0';
@@ -327,7 +327,7 @@ begin
 
         elsif curState = IncreaseCount then
             counter1_enable <= '1';
-            if equal_true = '1' then
+            if equalTrue = '1' then
                 counter2_enable <= '1';
             end if;
 
