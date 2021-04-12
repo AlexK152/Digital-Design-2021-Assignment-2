@@ -14,15 +14,19 @@ architecture tb of tb_PrimCount is
         resetMemElements: in std_logic;
         clk: in std_logic;
         counter1_enable: in std_logic;
-        counter1_out: out integer range 0 to 999
+        counter1_out: inout integer range 0 to 999;
+        equalTrue: in std_logic;
+        counter1_out_lock: out integer range 0 to 999
         );
     end component;
 
-    for Count1: PrimaryCounter use entity work.PrimCount(simple);
+    for Count1: PrimaryCounter use entity work.PrimCount_w_lock(simple);
 
     signal clk: std_logic := '0';
     signal resetMemElements, counter1_enable: std_logic;
     signal counter1_out: integer range 0 to 999;
+    signal equalTrue: std_logic;
+    signal counter1_out_lock: integer range 0 to 999;
 
 begin
 
@@ -34,14 +38,20 @@ begin
                        '1' after 150 ns, '0' after 160 ns, 
                        '1' after 180 ns, '0' after 210 ns,
                        '1' after 230 ns, '0' after 240 ns, 
-                       '1' after 250 ns, '0' after 260 ns;
+                       '1' after 250 ns, '0' after 260 ns,
+                       '1' after 280 ns, '0' after 290 ns,
+                       '1' after 300 ns, '0' after 310 ns, 
+                       '1' after 320 ns, '0' after 330 ns;
+    equalTrue <= '0' after 2 ns, '1' after 200 ns, '0' after 300 ns;
 
     Count1: PrimaryCounter
         port map(
             resetMemElements => resetMemElements,
             clk => clk,
             counter1_enable => counter1_enable,
-            counter1_out => counter1_out
+            counter1_out => counter1_out,
+            equalTrue => equalTrue,
+            counter1_out_lock => counter1_out_lock
         ); 
 
 end tb;

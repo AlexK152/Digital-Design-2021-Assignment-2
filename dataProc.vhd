@@ -427,7 +427,7 @@ begin
             if resetMemElements = '1' then
                 counter1_out_lock <= 0;
             else
-                if equalTrue = '1' then
+                if not equalTrue = '1' then
                     counter1_out_lock <= counter1_out;
                 end if;
             end if;

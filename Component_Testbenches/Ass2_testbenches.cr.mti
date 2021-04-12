@@ -50,8 +50,8 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
--- Compiling entity PrimCount
--- Compiling architecture simple of PrimCount
+-- Compiling entity PrimCount_w_lock
+-- Compiling architecture simple of PrimCount_w_lock
 
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
