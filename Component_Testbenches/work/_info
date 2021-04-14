@@ -245,7 +245,7 @@ Asimple
 R2
 R3
 R4
-DEx4 work 9 fsm_logic 0 22 8kUcF]]<JblD7khK0?ILY2
+Z46 DEx4 work 9 fsm_logic 0 22 8kUcF]]<JblD7khK0?ILY2
 l32
 L26
 VEOLdZLG1a^L6Z;N1k<1ED2
@@ -261,24 +261,24 @@ R45
 R13
 R14
 Eprimcount
-Z46 w1618240080
+Z47 w1618240080
 R2
 R3
 R4
 R5
-Z47 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
-Z48 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+Z48 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
+Z49 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd
 l0
 L6
 VTcd5CD0aJOoZJ<Y^]H:[M1
 !s100 mzQLJL8;U_mS38C5NiD901
 R8
 32
-Z49 !s110 1618241500
+Z50 !s110 1618241500
 !i10b 1
-Z50 !s108 1618241499.000000
-Z51 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
-Z52 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
+Z51 !s108 1618241499.000000
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
+Z53 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/PrimaryCounter.vhd|
 !i113 1
 R13
 R14
@@ -293,33 +293,33 @@ V=oZnGaDQ=hWojlPKVo7<03
 !s100 zhGbF0Jz2z0JI65m9F@Tc3
 R8
 32
-R49
-!i10b 1
 R50
+!i10b 1
 R51
 R52
+R53
 !i113 1
 R13
 R14
 Eprimcount_w_lock
-Z53 w1618247972
+Z54 w1618247972
 R2
 R3
 R4
 R5
-R47
 R48
+R49
 l0
 L6
 V]8bRN7<BkA63;IZ20fOCh1
 !s100 o^HIaRFT`=aSobG0YaD<:3
 R8
 32
-Z54 !s110 1618247978
+Z55 !s110 1618247978
 !i10b 1
-Z55 !s108 1618247978.000000
-R51
+Z56 !s108 1618247978.000000
 R52
+R53
 !i113 1
 R13
 R14
@@ -327,41 +327,41 @@ Asimple
 R2
 R3
 R4
-Z56 DEx4 work 16 primcount_w_lock 0 22 ]8bRN7<BkA63;IZ20fOCh1
+Z57 DEx4 work 16 primcount_w_lock 0 22 ]8bRN7<BkA63;IZ20fOCh1
 l19
 L18
 V8ESel[Uz62XN8Ll_f^0PE3
 !s100 _@[QH4bT@A8?5i?Zj9?IV2
 R8
 32
-R54
-!i10b 1
 R55
-R51
+!i10b 1
+R56
 R52
+R53
 !i113 1
 R13
 R14
 Etb_bcd_bin
-Z57 w1618237513
+Z58 w1618237513
 R1
 R2
 R3
 R4
 R5
-Z58 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
-Z59 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
+Z59 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
+Z60 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
 l0
 L8
 VKXo0bPdG@TBZJ65WI;Wga2
 !s100 [K9_DmQ^B=F@QAJ@J;PH;2
 R8
 32
-Z60 !s110 1618237516
+Z61 !s110 1618237516
 !i10b 1
-Z61 !s108 1618237516.000000
-Z62 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
-Z63 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
+Z62 !s108 1618237516.000000
+Z63 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
+Z64 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd|
 !i113 1
 R13
 R14
@@ -378,34 +378,34 @@ V[n0I=egQBikHW<nI[QjmI3
 !s100 mSYP:zQl[[RhE7N]BWPZ02
 R8
 32
-R60
-!i10b 1
 R61
+!i10b 1
 R62
 R63
+R64
 !i113 1
 R13
 R14
 Etb_bin_bcd
-Z64 w1618231988
+Z65 w1618231988
 R1
 R2
 R3
 R4
 R5
-Z65 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
-Z66 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Z66 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Z67 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
 l0
 L8
 Vf<5BDeg1T19PLn<j6mE]`1
 !s100 D=6C^0=QAmA2d[D@VS?hD3
 R8
 32
-Z67 !s110 1618231991
+Z68 !s110 1618231991
 !i10b 1
-Z68 !s108 1618231991.000000
-Z69 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
-Z70 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+Z69 !s108 1618231991.000000
+Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
+Z71 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd|
 !i113 1
 R13
 R14
@@ -422,38 +422,80 @@ VHQdo[E0^PB740ICcKA1iK2
 !s100 8`2=;O_ZM?AHU^Q2_@fZ83
 R8
 32
-R67
-!i10b 1
 R68
+!i10b 1
 R69
 R70
+R71
 !i113 1
 R13
 R14
-Etb_primcount
-Z71 w1618248329
+Etb_fsm_logic
+Z72 w1618361288
 R2
 R3
 R4
 R5
-Z72 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
-Z73 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
+Z73 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_FSM_logic.vhd
+Z74 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_FSM_logic.vhd
+l0
+L6
+VJ1G@Ib4@DnfozoTXPElGR1
+!s100 D8G;DFT7NV8cVV^?I4FaY3
+R8
+32
+Z75 !s110 1618361296
+!i10b 1
+Z76 !s108 1618361295.000000
+Z77 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_FSM_logic.vhd|
+Z78 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_FSM_logic.vhd|
+!i113 1
+R13
+R14
+Atb
+R46
+R2
+R3
+R4
+Z79 DEx4 work 12 tb_fsm_logic 0 22 J1G@Ib4@DnfozoTXPElGR1
+l50
+L10
+VRW;5]I9nof`A[DBmRd3WZ2
+!s100 7mLZCKK6VEJN2Cn<O53n00
+R8
+32
+R75
+!i10b 1
+R76
+R77
+R78
+!i113 1
+R13
+R14
+Etb_primcount
+Z80 w1618248329
+R2
+R3
+R4
+R5
+Z81 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
+Z82 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd
 l0
 L6
 V0_5a3fSm^Y]Jjae5B^_JR3
 !s100 I1<A2[nM@zBd]E91CH`5=1
 R8
 32
-Z74 !s110 1618248332
+Z83 !s110 1618248332
 !i10b 1
-Z75 !s108 1618248332.000000
-Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
-Z77 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
+Z84 !s108 1618248332.000000
+Z85 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
+Z86 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_PrimaryCounter.vhd|
 !i113 1
 R13
 R14
 Atb
-R56
+R57
 R2
 R3
 R4
@@ -464,34 +506,34 @@ VEKzDLh?:6V7_9UefKl4DV2
 !s100 oj@XoZ=SS[Ng0dLd<[8_@1
 R8
 32
-R74
+R83
 !i10b 1
-R75
-R76
-R77
+R84
+R85
+R86
 !i113 1
 R13
 R14
 Etb_right_combined
-Z78 w1618261979
+Z87 w1618261979
 R1
 R2
 R3
 R4
 R5
-Z79 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd
-Z80 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd
+Z88 8D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd
+Z89 FD:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd
 l0
 L8
 V:64kmC0U]EbA7iZXYRT3G0
 !s100 _7OdQ`TDTBY>[^S]SO;=]1
 R8
 32
-Z81 !s110 1618261983
+Z90 !s110 1618261983
 !i10b 1
-Z82 !s108 1618261983.000000
-Z83 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd|
-Z84 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd|
+Z91 !s108 1618261983.000000
+Z92 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd|
+Z93 !s107 D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_counting_complete.vhd|
 !i113 1
 R13
 R14
@@ -499,7 +541,7 @@ Atb
 R31
 R23
 R15
-R56
+R57
 R1
 R2
 R3
@@ -511,11 +553,11 @@ Vczh^nRFMW<aB]eW<`@>>e2
 !s100 A9Sg;K8ZjW9?6QWKVlR^11
 R8
 32
-R81
+R90
 !i10b 1
-R82
-R83
-R84
+R91
+R92
+R93
 !i113 1
 R13
 R14
