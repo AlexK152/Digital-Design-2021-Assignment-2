@@ -3,6 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 library xil_defaultlib;
 use xil_defaultlib.common_pack.all;
+--use ieee.std_logic_arith.all;
 
 entity dataConsume is
 port (
@@ -28,7 +29,7 @@ architecture struct of dataConsume is
 type state_type is (Idle, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
                     CommPause, GenPause, IncreaseCount, CheckCount2, EndSeq);
 signal curState, nextState: state_type;
-signal ctrl_2_delayed, ctrl_2_detected: std_logic;
+signal equal_true, ctrl_2_delayed, ctrl_2_detected: std_logic;
 signal counter2_out: std_logic_vector(1 downto 0);
 signal counter1_enable, counter2_enable, shiftReg_enable, ctrl_1_change, resetMemElements: std_logic; -- Signals driven by FSM output logic
 signal ctrl_1_not,ctrl_1_int, mux_out: std_logic;
@@ -36,15 +37,20 @@ signal counter1_out, counter1_out_lock: integer range 0 to 999;
 signal numWords_bin, indexReg_out: std_logic_vector(9 downto 0);
 signal equalTrue: std_logic;
 
+signal Reg_enable: std_logic;
+signal Input: std_logic_vector(55 downto 0);
+signal Input_index: std_logic_vector(9 downto 0);
 signal Reg2_enable: std_logic;
 signal indexReg: integer;
-signal sub_Output: integer range 0 to 6;
+signal sub_Output: std_logic_vector(9 downto 0);
 signal output:integer range 0 to 6 := 0;
 signal data1: std_logic_vector(7 downto 0);
+signal data3: std_logic_vector(7 downto 0);
+signal Output_Reg: std_logic_vector(55 downto 0);
 signal data2, Output_bytes: std_logic_vector(55 downto 0);
 
 begin
-    combi_nextState: process(curState, start, equalTrue, counter2_out, ctrl_2_detected)
+    combi_nextState: process(curState, start, equal_true, counter2_out, ctrl_2_detected)
         begin
             case curState is
                 when Idle =>
@@ -58,7 +64,7 @@ begin
                     nextState <= CheckCount1;
 
                 when CheckCount1 =>
-                    if equalTrue = '1' then
+                    if equal_true = '1' then
                         nextState <= CheckCount2;
                     else
                         nextState <= RequestByte;
@@ -68,7 +74,7 @@ begin
                     nextState <= GenPause;
 
                 when EnableShiftReg =>
-                    if equalTrue = '1' then
+                    if equal_true = '1' then
                         nextState <= IncreaseCount;
                     else
                         nextState <= CommPause;
@@ -89,7 +95,7 @@ begin
                     end if;
 
                 when IncreaseCount =>
-                    if equalTrue = '1' then
+                    if equal_true = '1' then
                         nextState <= CheckCount2;
                     else
                         nextState <= CheckCount1;
@@ -108,7 +114,7 @@ begin
         end process;
 
 
-    combi_out: process(curState, equalTrue)
+    combi_out: process(curState, equal_true)
     begin
         counter1_enable <= '0';
         counter2_enable <= '0';
@@ -132,7 +138,7 @@ begin
 
         elsif curState = IncreaseCount then
             counter1_enable <= '1';
-            if equalTrue = '1' then
+            if equal_true = '1' then
                 counter2_enable <= '1';
             end if;
 
@@ -211,12 +217,12 @@ begin
     end process;
 
 
-    CountComparator: process(counter1_out_lock, numWords_bin)
+    CountComparator: process(counter1_out, numWords_bin)
     variable result_flag: std_logic;
     variable counter1_out_bin: std_logic_vector(9 downto 0);
     begin
         result_flag := '0';
-        counter1_out_bin := std_logic_vector(to_unsigned(counter1_out_lock, counter1_out_bin'length));
+        counter1_out_bin := std_logic_vector(to_unsigned(counter1_out, counter1_out_bin'length));
         for i in 0 to 9 loop
             if  not (counter1_out_bin(i) = numWords_bin(i)) then
                 result_flag := '1';
@@ -232,7 +238,7 @@ begin
             if resetMemElements = '1' then
                 counter1_out_lock <= 0;
             else
-                if not equalTrue = '1' then
+                if equalTrue = '1' then
                     counter1_out_lock <= counter1_out;
                 end if;
             end if;
@@ -241,12 +247,14 @@ begin
 
 
     Binary_to_BCD: process(indexReg_out)
-    variable hundreds, tens, ones: unsigned(3 downto 0) := (others => '0');
+    variable hundreds, tens, ones: unsigned(3 downto 0);
     variable binaryInput: unsigned(9 downto 0);
     begin
         binaryInput := unsigned(indexReg_out);
         for i in 0 to 9 loop
-
+            hundreds := hundreds(2 downto 0) & tens(3);
+            tens := tens(2 downto 0) & ones(3);
+            ones := ones(2 downto 0) & binaryInput(9-i);
             if to_integer(hundreds) > 4 then
                 hundreds := hundreds + 3;
             end if;
@@ -256,85 +264,67 @@ begin
             if to_integer(ones) > 4 then
                 ones := ones + 3;
             end if;
-
-            hundreds := hundreds(2 downto 0) & tens(3);
-            tens := tens(2 downto 0) & ones(3);
-            ones := ones(2 downto 0) & binaryInput(9-i);
-
         end loop;
         maxIndex(2) <= std_logic_vector(hundreds);
         maxIndex(1) <= std_logic_vector(tens);
-        maxIndex(0) <= std_logic_vector(ones);
-        hundreds := (others => '0');
-        tens := (others => '0');
-        ones := (others => '0');   
+        maxIndex(0) <= std_logic_vector(ones);        
     end process;
 
     byte <= data;
 -----------------------
 
 -- current peak index reg
-process(clk)
+  process(clk)
   begin
     if rising_edge(clk) then
-      if Reset='0' then
-        if Reg2_enable='1' then
-          indexReg<=sub_Output;
-          indexReg_out<=std_logic_vector(to_unsigned(sub_Output, IndexReg_out'length));
+      if resetMemElements='0' then
+        if Reg_enable='1' then
+          indexReg<=to_integer(unsigned(Input_index));
+          indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));
         end if;
-      elsif Reset='1' then
+      elsif resetMemElements='1' then
           indexReg<= 0;
           indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));
 
       end if;
     end if;
   end process;
-    
 
 
 --------------------
 
 -- shift reg
-  behaviour:process(clk)
-  variable Input_byte:std_logic_vector(55 downto 0) := (others => '0');
+  behaviour:process(clk, resetMemElements, shiftReg_enable)
+  variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0');
   begin
-    --Input_byte:= Input;
+    --current_bytes:=(others:= "0");
     if rising_edge(clk) then
       if shiftReg_enable='1' then
  
-        --Input_Delay <= shift_right(Input_Delay, 1);
-        --Input_Delay(0)<= Input;
-        -- one byte is equal to 8 bits. So we define each byte with ranges.
+        current_bytes := "00000000" & current_bytes(55 downto 8);
+        current_bytes(55 downto 48):= data3;
+        data1<= current_bytes(31 downto 24);
+        Output_Reg<=current_bytes(55 downto 0);
 
-
-        Input_byte(15 downto 8):= Input_byte(7 downto 0);  
-        Input_byte(23 downto 16):= Input_byte(15 downto 8);
-        Input_byte(31 downto 24):= Input_byte(23 downto 16);
-        Input_byte(39 downto 32):= Input_byte(31 downto 24);
-        Input_byte(47 downto 40):= Input_byte(39 downto 32);
-        Input_byte(55 downto 48):= Input_byte(47 downto 40);
-        Input_byte(7 downto 0):= data;
-
-        data1<= Input_byte(31 downto 24);
-
-      elsif Reset='1' then
+      elsif resetMemElements='1' then
         data1<= (0 => '0', others => '0');
       end if;
     end if;
-    Output_bytes <= Input_byte;
   end process;
-
 
 ---------------------------
 
 -- current peak register
-process(clk)
+
+  process(clk)
   begin
     if rising_edge(clk) then
-      if Reg2_enable='1' then
-      data2<=Output_bytes;
-      elsif Reset='1' then
+      if resetMemElements='1' then
         data2<= (0 => '0', others => '0');
+      else
+        if Reg_enable= '1' then
+          data2<=Input(55 downto 0);
+        end if;
       end if;
     end if;
   end process;
@@ -343,14 +333,16 @@ process(clk)
 -----------------------
 
 -- secondary counter
-process (clk)
+
+   -- An enable counter
+   process (clk, resetMemElements, counter2_enable)
       variable index:integer range 0 to 3;
    begin
       if (clk'event and clk = '1') then
 
         if resetMemElements = '1' then
           index := 0;
-        else
+        elsif resetMemElements = '0' then
           if counter2_enable = '1' then
             index := index + 1;
           end if;
@@ -359,41 +351,28 @@ process (clk)
       counter2_out<=std_logic_vector(to_unsigned(index, counter2_out'length));
    end process;
 
-
 ------------------------
 
 -- subtract 3
-process(clk,counter1_out)
-  begin
-    if rising_edge(clk) then
-        if resetMemElements='1' then
-            sub_Output<= 0;
-        else
-        sub_Output<= counter1_out -3;
-        end if;
-    end if;
-    --Input <= output;
 
-  end process;
+sub_Output<= std_logic_vector(to_unsigned(Counter1_out, sub_Output'length) - 3);
+
+
 
 -------------------
 
 -- peak compare
 process (data1, data2)
-    variable data2_byte: std_logic_vector(7 downto 0);
+    variable data1_byte: signed(7 downto 0);
+    variable data2_byte: signed(7 downto 0);
     begin
-      data2_byte := data2(31 downto 24);
+      data1_byte := signed(data1(7 downto 0));
+      data2_byte := signed(data2(31 downto 24));
       Reg2_enable <= '0';
-      if data1>data2_byte then
+      if data1_byte>data2_byte then
         Reg2_enable <='1';
       end if  ;
     end process;
 
 end;
-
-
-
-
-
-
-
+          
