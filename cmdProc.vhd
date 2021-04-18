@@ -62,7 +62,6 @@ begin
          --curstate <= "010";
          txnow <= '0';
          if ANNNflag = '1' then
-            --start <= '1';
             if txdone = '1' then-- added
               nxstate_cmd <= WAITFORDP;
             else 
