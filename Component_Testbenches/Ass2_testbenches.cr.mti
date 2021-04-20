@@ -81,6 +81,17 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Compiling architecture tb of tb_FSM_logic
 -- Loading entity FSM_logic
 
+} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
+Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package common_pack
+-- Compiling entity tb_Bin_BCD
+-- Compiling architecture tb of tb_Bin_BCD
+-- Loading entity Bin_BCD
+
 } {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_BCD_to_binary.vhd
 Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
 -- Loading package STANDARD
@@ -105,16 +116,5 @@ Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 
 -- Loading entity BCD_bin
 -- Loading entity Bin_BCD
 -- Loading entity Count_Comparator
-
-} {} {}} D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/GitHub/Digital-Design-2021-Assignment-2/Component_Testbenches/tb_Binary_to_BCD.vhd
-Model Technology ModelSim PE Student Edition vcom 10.4a Compiler 2015.03 Apr  7 2015
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package common_pack
--- Compiling entity tb_Bin_BCD
--- Compiling architecture tb of tb_Bin_BCD
--- Loading entity Bin_BCD
 
 } {} {}}
