@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 library xil_defaultlib;
 use xil_defaultlib.common_pack.all;
---use ieee.std_logic_arith.all;
+
 
 entity dataConsume is
 port (
@@ -192,7 +192,7 @@ begin
     end process;
 
 
-    primaryCounter: process(resetMemElements, counter1_enable, clk)
+    primaryCounter: process(resetMemElements, counter1_enable, clk)  -- Primary Counter counts bytes being processed. 
     variable count: integer range 0 to 999;
     begin
         if rising_edge(clk) then
@@ -232,7 +232,7 @@ begin
     end process;
 
 
-    LockCounter1: process(clk, resetMemElements, equalTrue)
+    LockCounter1: process(clk, resetMemElements, equalTrue)    -- Primary counter stops counting and locks the value at which it was signalled to halt.
     begin
         if rising_edge(clk) then
             if resetMemElements = '1' then
@@ -271,40 +271,38 @@ begin
     end process;
 
     byte <= data;
------------------------
 
--- current peak index reg
-  process(clk)
+
+  
+  Index_Register:process(clk)   -- Current peak Index register.
   begin
     if rising_edge(clk) then
       if resetMemElements='0' then
         if Reg_enable='1' then
           indexReg<=to_integer(unsigned(Input_index));
-          indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));
+          indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));   -- Index stored as std_logic_vector.
         end if;
       elsif resetMemElements='1' then
           indexReg<= 0;
-          indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));
-
+          indexReg_out<=std_logic_vector(to_unsigned(indexReg, IndexReg_out'length));   -- Stored as std_logic_vector as it is the desired input type for the next stage.
       end if;
     end if;
   end process;
 
 
---------------------
 
--- shift reg
-  behaviour:process(clk, resetMemElements, shiftReg_enable)
-  variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0');
+
+  
+  Shift_Register:process(clk, resetMemElements, shiftReg_enable)     -- Shift register with serial input and parallel output.
+  variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0');     -- Eight bytes defined as fifty-six bits.
   begin
-    --current_bytes:=(others:= "0");
     if rising_edge(clk) then
       if shiftReg_enable='1' then
  
-        current_bytes := "00000000" & current_bytes(55 downto 8);
+        current_bytes := "00000000" & current_bytes(55 downto 8);  
         current_bytes(55 downto 48):= data3;
-        data1<= current_bytes(31 downto 24);
-        Output_Reg<=current_bytes(55 downto 0);
+        data1<= current_bytes(31 downto 24);   -- Middle byte assigned as "data1" so that it can be fed to comparator.
+        Output_Reg<=current_bytes(55 downto 0);   -- Parallel output of all eight bytes.
 
       elsif resetMemElements='1' then
         data1<= (0 => '0', others => '0');
@@ -312,31 +310,27 @@ begin
     end if;
   end process;
 
----------------------------
 
--- current peak register
 
-  process(clk)
+
+
+  Peak_Register: process(clk)   -- Current peak register.
   begin
     if rising_edge(clk) then
       if resetMemElements='1' then
         data2<= (0 => '0', others => '0');
       else
         if Reg_enable= '1' then
-          data2<=Input(55 downto 0);
+          data2<=Input(55 downto 0);    -- "data2" comprises of the current peak byte as well as the three previous and the three following bytes.
         end if;
       end if;
     end if;
   end process;
 
 
------------------------
 
--- secondary counter
-
-   -- An enable counter
-   process (clk, resetMemElements, counter2_enable)
-      variable index:integer range 0 to 3;
+   Second_Counter:process (clk, resetMemElements, counter2_enable)  -- Secondary Counter.
+      variable index:integer range 0 to 3;   -- Counts till three.
    begin
       if (clk'event and clk = '1') then
 
@@ -348,29 +342,29 @@ begin
           end if;
          end if;
       end if;
-      counter2_out<=std_logic_vector(to_unsigned(index, counter2_out'length));
+      counter2_out<=std_logic_vector(to_unsigned(index, counter2_out'length));   -- Stored as std_logic_vector as it is the desired input type for the next stage.
    end process;
 
-------------------------
-
--- subtract 3
-
-sub_Output<= std_logic_vector(to_unsigned(Counter1_out, sub_Output'length) - 3);
 
 
 
--------------------
+   sub_Output<= std_logic_vector(to_unsigned(Counter1_out, sub_Output'length) - 3);   -- Subtracting three from the first counter's output.  
 
--- peak compare
-process (data1, data2)
-    variable data1_byte: signed(7 downto 0);
-    variable data2_byte: signed(7 downto 0);
-    begin
-      data1_byte := signed(data1(7 downto 0));
-      data2_byte := signed(data2(31 downto 24));
-      Reg2_enable <= '0';
-      if data1_byte>data2_byte then
-        Reg2_enable <='1';
-      end if  ;
+
+
+
+ 
+   Comparator:process (data1, data2)   -- Compares peak.
+      variable data1_byte: signed(7 downto 0);
+      variable data2_byte: signed(7 downto 0);
+     begin
+        data1_byte := signed(data1(7 downto 0));
+        data2_byte := signed(data2(31 downto 24));
+        Reg2_enable <= '0';
+        if data1_byte>data2_byte then    -- Compares previous peak to new byte.
+          Reg2_enable <='1';    
+        end if  ;
     end process;
+
+end;
           
