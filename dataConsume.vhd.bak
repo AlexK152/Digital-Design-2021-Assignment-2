@@ -118,7 +118,7 @@ begin
 
     combi_out: process(curState, equalTrue)
     begin
-        counter1_enable <= '0';
+        counter1_enable <= '0'; -- default output signal values
         counter2_enable <= '0';
         shiftReg_enable <= '0';
         ctrl_1_change <= '0';
