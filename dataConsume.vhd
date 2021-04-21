@@ -25,7 +25,7 @@ architecture struct of dataConsume is
 
 ---------------------------------------------------------
 
-type state_type is (Idle, DataReady, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
+type state_type is (Idle, Data_Ready, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
                     CommPause, GenPause, IncreaseCount, CheckCount2, EndSeq);
 signal curState, nextState: state_type;
 signal ctrl_2_delayed, ctrl_2_detected: std_logic;
@@ -77,10 +77,10 @@ begin
                     if equalTrue = '1' then
                         nextState <= IncreaseCount;
                     else
-                        nextState <= DataReady;
+                        nextState <= Data_Ready;
                     end if;
 
-                when DataReady =>
+                when Data_Ready =>
                     if start = '1' then
                         nextState <= IncreaseCount;
                     else 
@@ -142,11 +142,8 @@ begin
         elsif curState = EnableShiftReg then
             shiftReg_enable <= '1';
 
-        elsif curState = DataReady then
+        elsif curState = Data_Ready then
             dataReady <= '1';
-
-    --    elsif curState = CommPause then
-      --      dataReady <= '1';
 
         elsif curState = IncreaseCount then
             counter1_enable <= '1'; -- increments primary counter regardless of whether it has counted all requested bytes to give an accurate index value of peak byte
