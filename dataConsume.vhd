@@ -26,7 +26,7 @@ architecture struct of dataConsume is
 ---------------------------------------------------------
 
 type state_type is (Idle, Data_Ready, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
-                    CommPause, GenPause, IncreaseCount, CheckCount2, EndSeq);
+                    CommPause, GenPause, IncreaseCount2, CheckCount2, EndSeq);
 signal curState, nextState: state_type;
 signal ctrl_2_delayed, ctrl_2_detected: std_logic;
 signal counter2_out: std_logic_vector(1 downto 0);
@@ -74,22 +74,22 @@ begin
                     nextState <= GenPause;
 
                 when EnableShiftReg => -- stores the new byte (into a shift register) after validation from Data Generator
-                    if equalTrue = '1' then
-                        nextState <= IncreaseCount;
+                    if equalTrue = '1' then -- this state is a part of two separate state loops, which is why it branches out depending on 'equalTrue'
+                        nextState <= IncreaseCount2;
                     else
-                        nextState <= Data_Ready;
+                        nextState <= Data_Ready; -- in the state loop for the primary counter, that counter is incremented in the "EnableShiftReg" state
                     end if;
 
-                when Data_Ready =>
+                when Data_Ready => -- the 'dataReady' signal to the Command Processor resides in its own state to ensure it stays 'high' for one clock cycle
                     if start = '1' then
-                        nextState <= IncreaseCount;
+                        nextState <= CheckCount1; -- if 'start' is not asserted 'low', the system will bypass the pause state which waits for the Command Processor
                     else 
                         nextState <= CommPause;
                     end if;
 
                 when CommPause => -- waits for Command Processor's start signal after giving it a new byte
                     if start = '1' then
-                        nextState <= IncreaseCount;
+                        nextState <= CheckCount1;
                     else
                         nextState <= CommPause;
                     end if;
@@ -101,12 +101,8 @@ begin
                         nextState <= GenPause;
                     end if;
 
-                when IncreaseCount => -- increments one of the counters' values, depending on the output signal of the comparator
-                    if equalTrue = '1' then
-                        nextState <= CheckCount2;
-                    else
-                        nextState <= CheckCount1;
-                    end if;
+                when IncreaseCount2 => -- increments the second counter's value
+                    nextState <= CheckCount2;
 
                 when CheckCount2 => -- checks if the secondary counter has reached the value of '3' and if so, ends the sequence
                     if counter2_out = "11" then
@@ -141,15 +137,16 @@ begin
 
         elsif curState = EnableShiftReg then
             shiftReg_enable <= '1';
+            if equalTrue = '0' then 
+                counter1_enable <= '1'; -- increments primary counter
+            end if;
 
         elsif curState = Data_Ready then
             dataReady <= '1';
 
-        elsif curState = IncreaseCount then
+        elsif curState = IncreaseCount2 then
             counter1_enable <= '1'; -- increments primary counter regardless of whether it has counted all requested bytes to give an accurate index value of peak byte
-            if equalTrue = '1' then 
-                counter2_enable <= '1'; -- increments secondary counter if primary counter has counted all requested bytes
-            end if;
+            counter2_enable <= '1'; -- increments secondary counter
 
         elsif curState = EndSeq then
             seqDone <= '1';
@@ -335,7 +332,7 @@ begin
 ------------------------------
 -- Stores the Current Peak byte's index in the register.
 
--- | Inputs from: the Subtractor                   |
+-- | Inputs from: the Subtractor  |
 -- | Outputs to: the Binary to BCD|
 
   IndexRegister: process(clk)
@@ -356,7 +353,7 @@ begin
 --------------------
 
 -- Shift register with serial input and parallel output.
--- | Inputs from: the data Generator                 |
+-- | Inputs from: the data Generator   |
 -- | Outputs to:  Current Peak register|
 
   ShiftRegister:process(clk, resetMemElements, shiftReg_enable)
