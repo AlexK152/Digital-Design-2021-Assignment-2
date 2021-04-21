@@ -118,7 +118,7 @@ begin
 
     combi_out: process(curState, equalTrue)
     begin
-        counter1_enable <= '0';
+        counter1_enable <= '0'; -- default output signal values
         counter2_enable <= '0';
         shiftReg_enable <= '0';
         ctrl_1_change <= '0';
@@ -213,7 +213,7 @@ begin
 ------------------------------
 -- Converts the "number of bytes" value from the Command Processor from Binary Coded Decimal to binary
 
--- | Inputs from: 'numWords' signal from Command Processor
+-- | Inputs from: 'numWords' signal from Command Processor 
 -- | Outputs to: Count Comparator
 
     BCD_to_binary: process(numWords_bcd)
@@ -305,31 +305,40 @@ begin
 ------------------------------
 -- Passes the Data Generator's input directly to the Command Processor's byte input
     byte <= data;
+
+
 ------------------------------
+-- Counts the number of bytes being processed by the data processor
+
+-- | Outputs to: the Subtractor |
 
     primaryCounter: process(resetMemElements, counter1_enable, clk)
-    variable count: integer range 0 to 999;
+    variable count: integer range 0 to 999; --max range of 1000 bytes
     begin
         if rising_edge(clk) then
-            if resetMemElements = '1' then
+            if resetMemElements = '1' then -- synchronous reset by FSM logic
                 count := 0;
-            elsif counter1_enable = '1' then
+            elsif counter1_enable = '1' then  -- when counter is enabled, the count value increases by 1 every clock cycle
                 count := count + 1;
             end if;
         end if;
-    counter1_out <= count;
+    counter1_out <= count; -- Count value assigned as Primary counter's output
     end process;
 
 ------------------------------
--- current peak index reg
-  process(clk)
+-- Stores the Current Peak byte's index in the register.
+
+-- | Inputs from: the Subtractor                   |
+-- | Outputs to: the Binary to BCD|
+
+  IndexRegister: process(clk)
   begin
     if rising_edge(clk) then
       if resetMemElements='0' then
-        if Reg2_enable='1' then
-          indexReg_out<=sub_Output;
+        if Reg2_enable='1' then -- Values are updated as register is enabled
+          indexReg_out<=sub_Output;  
         end if;
-      elsif resetMemElements='1' then
+      elsif resetMemElements='1' then -- synchronous reset by FSM logic
           indexReg_out<= (others => '0');
 
       end if;
@@ -339,20 +348,22 @@ begin
 
 --------------------
 
--- shift reg
-  behaviour:process(clk, resetMemElements, shiftReg_enable)
-  variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0');
-  begin
-    --current_bytes:=(others:= "0");
-    if rising_edge(clk) then
-      if shiftReg_enable='1' then
- 
-        current_bytes := "00000000" & current_bytes(55 downto 8);
-        current_bytes(55 downto 48) := data;
-        data1<= current_bytes(31 downto 24);
-        Output_Reg<=current_bytes(55 downto 0);
+-- Shift register with serial input and parallel output.
+-- | Inputs from: the data Generator                 |
+-- | Outputs to:  Current Peak register|
 
-      elsif resetMemElements='1' then
+  ShiftRegister:process(clk, resetMemElements, shiftReg_enable)
+  variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0'); -- default output signal values
+  begin
+    if rising_edge(clk) then
+      if shiftReg_enable='1' then  
+        -- Each byte is eights bits long
+        current_bytes := "00000000" & current_bytes(55 downto 8);
+        current_bytes(55 downto 48) := data; -- New input byte is assigned to bit range 55 downto 48
+        data1<= current_bytes(31 downto 24); -- Middle byte assigned to data1 
+        Output_Reg<=current_bytes(55 downto 0); -
+
+      elsif resetMemElements='1' then -- synchronous reset by FSM logic
         data1<= (others => '0');
       end if;
     end if;
@@ -360,15 +371,20 @@ begin
 
 ---------------------------
 
--- current peak register
+-- Current Peak Register
+-- Stores the current peak byte as well as the three previous and three following bytes 
+-- in a register
 
-  process(clk)
+-- | Inputs from: Comparator                            |
+-- | Outputs to: 'dataResults' signal and the Comparator|
+
+  PeakRegister: process(clk)
   begin
     if rising_edge(clk) then
-      if resetMemElements='1' then
+      if resetMemElements='1' then -- synchronous reset by FSM logic
         data2<= (others => '0');
       else
-        if Reg2_enable= '1' then
+        if Reg2_enable= '1' then  -- Values are updated as register is enabled
           data2<=Output_Reg;
         end if;
       end if;
@@ -378,54 +394,68 @@ begin
 
 -----------------------
 
--- secondary counter
+-- Counts till '3' 
 
-   -- An enable counter
-   process (clk, resetMemElements, counter2_enable)
+
+-- | Outputs to: the FSM combinational logic for next state|
+
+
+   SecondaryCounter: process (clk, resetMemElements, counter2_enable)
       variable index:integer range 0 to 3;
    begin
       if (clk'event and clk = '1') then
 
-        if resetMemElements = '1' then
+        if resetMemElements = '1' then -- synchronous reset by FSM logic
           index := 0;
         elsif resetMemElements = '0' then
-          if counter2_enable = '1' then
+          if counter2_enable = '1' then  -- when counter is enabled, the count value increases by 1 every clock cycle till '3'
             index := index + 1;
           end if;
          end if;
       end if;
-      counter2_out<=std_logic_vector(to_unsigned(index, counter2_out'length));
+      counter2_out<=std_logic_vector(to_unsigned(index, counter2_out'length));  
    end process;
 
 ------------------------
 
--- subtract 3
+-- Subtractor 
+-- Subtracting three from the Primary counter's output.
 
-sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 3;
+-- | Inputs from: PrimaryCounter                 |
+-- | Outputs to:  Index Register                 |
+
+
+sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 3; -- Basic subtraction in 'unsigned std_vector_logic' type
 
 
 
 -------------------
 
--- peak compare
-process (data1, data2)
-    variable data1_byte: signed(7 downto 0);
-    variable data2_byte: signed(7 downto 0);
-    begin
-      data1_byte := signed(data1(7 downto 0));
-      data2_byte := signed(data2(31 downto 24));
-      Reg2_enable <= '0';
-      if data1_byte>data2_byte then
-        Reg2_enable <='1';
-      end if  ;
-    end process;
+-- Compares the current peak byte stored in the Peak register with the new byte read from the shift register
+
+-- | Inputs from: Peak register and Shift register                 |
+-- | Outputs to: Current Peak Register                             |
+
+   Comparator: process (data1, data2)
+      -- Using type 'signed' as our specification requires us to compare signed
+       variable data1_byte: signed(7 downto 0);
+       variable data2_byte: signed(7 downto 0);
+       begin
+         data1_byte := signed(data1(7 downto 0));
+         data2_byte := signed(data2(31 downto 24));
+         Reg2_enable <= '0';
+         if data1_byte>data2_byte then -- If condition met, then Peak register is triggered to be updated
+           Reg2_enable <='1';
+         end if  ;
+       end process;
 
 --------------------
--- data2 to dataResults
-    process (data2)
+-- Assigning data2 to the 'dataResults' signal
+
+    to_dataResults: process (data2)
         begin
-            for i in 0 to RESULT_BYTE_NUM-1 loop
-                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8)));
+            for i in 0 to RESULT_BYTE_NUM-1 loop -- Iterating through loop 
+                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8))); -- Assigning range of 'data2' bits to teh relevant 'dataResults' index
             end loop;
     end process;
 
