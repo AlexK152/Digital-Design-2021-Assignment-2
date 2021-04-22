@@ -25,13 +25,8 @@ architecture struct of dataConsume is
 
 ---------------------------------------------------------
 
-<<<<<<< Updated upstream
 type state_type is (Idle, Data_Ready, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
                     CommPause, GenPause, IncreaseCount2, CheckCount2, EndSeq);
-=======
-type state_type is (Idle, DataReady, ClearMem, CheckCount1, RequestByte, EnableShiftReg, 
-                    CommPause, GenPause, IncreaseCount, CheckCount2, EndSeq);
->>>>>>> Stashed changes
 signal curState, nextState: state_type;
 signal ctrl_2_delayed, ctrl_2_detected: std_logic;
 signal counter2_out: std_logic_vector(1 downto 0);
@@ -93,7 +88,7 @@ begin
                     end if;
 
                 when CommPause => -- waits for Command Processor's start signal after giving it a new byte
-                    if start = '1' or equalTrue = '1' then
+                    if start = '1' or equalTrue = '1' then -- "equalTrue = '1'" accounts for reaching the last byte of the sequence where no new byte should be requested
                         nextState <= CheckCount1;
                     else
                         nextState <= CommPause;
@@ -146,20 +141,10 @@ begin
                 counter1_enable <= '1'; -- increments primary counter
             end if;
 
-<<<<<<< Updated upstream
         elsif curState = Data_Ready then
             dataReady <= '1';
 
         elsif curState = IncreaseCount2 then
-=======
-        elsif curState = DataReady then
-            dataReady <= '1';
-
-    --    elsif curState = CommPause then
-      --      dataReady <= '1';
-
-        elsif curState = IncreaseCount then
->>>>>>> Stashed changes
             counter1_enable <= '1'; -- increments primary counter regardless of whether it has counted all requested bytes to give an accurate index value of peak byte
             counter2_enable <= '1'; -- increments secondary counter
 
@@ -473,7 +458,7 @@ sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtract
     to_dataResults: process (data2)
         begin
             for i in 0 to RESULT_BYTE_NUM-1 loop -- Iterating through loop 
-                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8))); -- Assigning range of 'data2' bits to teh relevant 'dataResults' index
+                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8))); -- Assigning range of 'data2' bits to the relevant 'dataResults' index
             end loop;
     end process;
 

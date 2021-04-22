@@ -422,7 +422,7 @@ begin
 ------------------------
 
 -- Subtractor 
--- Subtracting three from the Primary counter's output.
+-- Subtracting four from the Primary counter's output.
 
 -- | Inputs from: PrimaryCounter                 |
 -- | Outputs to:  Index Register                 |
