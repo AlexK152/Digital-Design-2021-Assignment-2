@@ -323,7 +323,7 @@ begin
             if resetMemElements = '1' then -- synchronous reset by FSM logic
                 count := 0;
             elsif counter1_enable = '1' then  -- when counter is enabled, the count value increases by 1 every clock cycle
-                count := count + 1;
+                count := count + 1; 
             end if;
         end if;
     counter1_out <= count; -- Count value assigned as Primary counter's output
@@ -354,7 +354,7 @@ begin
 
 -- Shift register with serial input and parallel output.
 -- | Inputs from: the data Generator   |
--- | Outputs to:  Current Peak register|
+-- | Outputs to:  Current Peak register and the Comparator|
 
   ShiftRegister:process(clk, resetMemElements, shiftReg_enable)
   variable current_bytes:std_logic_vector(55 downto 0):= (others=>'0'); -- default output signal values
@@ -375,10 +375,10 @@ begin
 ---------------------------
 
 -- Current Peak Register
--- Stores the current peak byte as well as the three previous and three following bytes 
+-- Stores the current peak byte along with the three previous and three following bytes 
 -- in a register
 
--- | Inputs from: Comparator                            |
+-- | Inputs from: Comparator and Shift register         |
 -- | Outputs to: 'dataResults' signal and the Comparator|
 
   PeakRegister: process(clk)
