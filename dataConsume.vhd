@@ -88,7 +88,7 @@ begin
                     end if;
 
                 when CommPause => -- waits for Command Processor's start signal after giving it a new byte
-                    if start = '1' then
+                    if start = '1' or equalTrue = '1' then -- "equalTrue = '1'" accounts for reaching the last byte of the sequence where no new byte should be requested
                         nextState <= CheckCount1;
                     else
                         nextState <= CommPause;
@@ -428,7 +428,7 @@ begin
 -- | Outputs to:  Index Register                 |
 
 
-sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 3; -- Basic subtraction in 'unsigned std_vector_logic' type
+sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned std_vector_logic' type
 
 
 
@@ -458,7 +458,7 @@ sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 3; -- Basic subtract
     to_dataResults: process (data2)
         begin
             for i in 0 to RESULT_BYTE_NUM-1 loop -- Iterating through loop 
-                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8))); -- Assigning range of 'data2' bits to teh relevant 'dataResults' index
+                dataResults(i) <= data2((55-(i*8)) downto (48-(i*8))); -- Assigning range of 'data2' bits to the relevant 'dataResults' index
             end loop;
     end process;
 
