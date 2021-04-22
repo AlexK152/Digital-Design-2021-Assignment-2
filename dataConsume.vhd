@@ -428,7 +428,7 @@ begin
 -- | Outputs to:  Index Register                 |
 
 
-sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned std_vector_logic' type
+sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned' type
 
 
 
@@ -454,6 +454,7 @@ sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtract
 
 --------------------
 -- Assigning data2 to the 'dataResults' signal
+-- | Inputs from: Peak register     |
 
     to_dataResults: process (data2)
         begin

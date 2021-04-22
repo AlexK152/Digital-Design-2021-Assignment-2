@@ -323,7 +323,7 @@ begin
             if resetMemElements = '1' then -- synchronous reset by FSM logic
                 count := 0;
             elsif counter1_enable = '1' then  -- when counter is enabled, the count value increases by 1 every clock cycle
-                count := count + 1;
+                count := count + 1; 
             end if;
         end if;
     counter1_out <= count; -- Count value assigned as Primary counter's output
@@ -428,7 +428,7 @@ begin
 -- | Outputs to:  Index Register                 |
 
 
-sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned std_vector_logic' type
+sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned' type
 
 
 
