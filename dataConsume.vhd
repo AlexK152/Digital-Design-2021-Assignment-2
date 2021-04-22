@@ -88,7 +88,7 @@ begin
                     end if;
 
                 when CommPause => -- waits for Command Processor's start signal after giving it a new byte
-                    if start = '1' then
+                    if start = '1' or equalTrue = '1' then -- "equalTrue = '1'" accounts for reaching the last byte of the sequence where no new byte should be requested
                         nextState <= CheckCount1;
                     else
                         nextState <= CommPause;
@@ -428,7 +428,7 @@ begin
 -- | Outputs to:  Index Register                 |
 
 
-sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 3; -- Basic subtraction in 'unsigned std_vector_logic' type
+sub_Output<= to_unsigned(Counter1_out, sub_Output'length) - 4; -- Basic subtraction in 'unsigned std_vector_logic' type
 
 
 
