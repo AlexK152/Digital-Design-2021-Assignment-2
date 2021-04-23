@@ -136,16 +136,13 @@ begin
             ctrl_1_change <= '1'; -- output signal to trigger two-phase protocol
 
         elsif curState = EnableShiftReg then
-            shiftReg_enable <= '1';
-            if equalTrue = '0' then 
-                counter1_enable <= '1'; -- increments primary counter
-            end if;
+            shiftReg_enable <= '1'; 
+            counter1_enable <= '1'; -- increments primary counter regardless of whether it has counted all requested bytes to give an accurate index value of peak byte
 
         elsif curState = Data_Ready then
             dataReady <= '1';
 
         elsif curState = IncreaseCount2 then
-            counter1_enable <= '1'; -- increments primary counter regardless of whether it has counted all requested bytes to give an accurate index value of peak byte
             counter2_enable <= '1'; -- increments secondary counter
 
         elsif curState = EndSeq then
