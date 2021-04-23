@@ -21,10 +21,6 @@ entity cmdProc is
          maxIndex: in BCD_ARRAY_TYPE(2 downto 0);
          dataResults: in CHAR_ARRAY_TYPE(0 to RESULT_BYTE_NUM-1);
          seqDone: in std_logic
-         --curstate: out std_logic_vector(2 downto 0); added for debugging 
-         --bytesnum: out integer; added for debugging 
-         --hex: out std_logic_vector(23 downto 0); added for debugging 
-         --seq_Done: out std_logic added for debugging 
         );
 end cmdProc;
 architecture dataflow of cmdProc is
@@ -33,14 +29,16 @@ signal curstate_cmd, nxstate_cmd:CMD_STATE_TYPE;
 signal ANNNflag, seqdonereg: std_logic;
 signal rcvreg_32:std_logic_vector(31 downto 0);
 signal nobytessent: integer range 0 to 3;
-signal hexreg: std_logic_vector(23 downto 0);--- edited to add space
-signal bcdreg12: std_logic_vector(11 downto 0);
+signal hexreg: std_logic_vector(23 downto 0);
 begin
   cmd_nextstate: process(curstate_cmd,rxnow,txdone,ANNNflag,dataReady,seqDone)
   begin
     CASE curstate_cmd is
       when INTIAL =>
-         --curstate <= "000";
+         txnow <= '0';
+         start <= '0';
+         rxdone <= '0';
+         -- to reset the signals after synchronous reset
          if rxnow = '1' then
             rxdone <= '1';
             nxstate_cmd <= ECHO;
@@ -48,7 +46,6 @@ begin
             nxstate_cmd <= INTIAL;
          end if;
       when ECHO =>
-         --curstate <= "001";
          rxdone <= '0';
          if txdone = '1' then
             txData <= rcvreg_32(7 downto 0);
@@ -59,37 +56,32 @@ begin
             nxstate_cmd <= ECHO;
          end if;
       when ANNNCHECK =>
-         --curstate <= "010";
          txnow <= '0';
          if ANNNflag = '1' then
-            if txdone = '1' then-- added
+            if txdone = '1' then
               nxstate_cmd <= WAITFORDP;
             else 
               nxstate_cmd <= ANNNCHECK;
-            end if;-- end
+            end if;
          else
             nxstate_cmd <= INTIAL;
          end if;
       when WAITFORDP =>
          start <= '1';
-         --curstate <= "011";
          if dataReady = '1' then
             nxstate_cmd <= SENDBYTES;
             start <= '0';
-         else
-            nxstate_cmd <= WAITFORDP;
+         else nxstate_cmd <= WAITFORDP;
          end if;
       when SENDBYTES =>
-         --curstate <= "100";
-         txData <= hexreg(23 downto 16);--- edit to add space
+         txData <= hexreg(23 downto 16);
          txnow <= '1';
          nxstate_cmd <= WAITFORTRANSMISION;
       when WAITFORTRANSMISION =>
-         --curstate <= "101";
          txnow <= '0';
          if txdone = '1' then
-            if nobytessent = 3 then -- edit to add space
-               if seqDonereg = '1' then -- should be seqdonereg
+            if nobytessent = 3 then 
+               if seqDonereg = '1' then 
                   nxstate_cmd <= INTIAL;
                else
                   nxstate_cmd <= WAITFORDP;
@@ -104,7 +96,7 @@ begin
          nxstate_cmd <= INTIAL;
       end case;
    end process;
--- 32 bit register to store the most recent bytes received
+-- 32 bit register to store the most recent 4 bytes received
    shiftreg32: process(clk,curstate_cmd,rxnow)
    begin
    if rising_edge(clk) then
@@ -120,23 +112,23 @@ begin
    variable A, N1, N2, N3 : std_logic_vector(7 downto 0);
    variable Int1, Int2, Int3: integer ;
    begin
-      -- splitting the 32bit word into 4 bytes to check validity of each character 
+-- splitting the 32bit word into 4 bytes to check validity of each character 
       A := rcvreg_32(31 downto 24);
       N1 := rcvreg_32(23 downto 16);
       N2 := rcvreg_32(15 downto 8);
       N3 := rcvreg_32(7 downto 0);
-      -- all ascii decimal digits start with 0011 and therfore only the last 4 bits are significant
+-- all ascii decimal digits start with 0011 and therfore only the last 4 bits are significant
       int1 := to_integer(unsigned(N1(3 downto 0)));
       int2 := to_integer(unsigned(N2(3 downto 0)));
       int3 := to_integer(unsigned(N3(3 downto 0)));          
       ANNNflag <= '0';
-      -- checking the input is valid below
+-- checking the input is valid below
       if  (A = "01000001"
           or A = "01100001")
           and (N1(7 downto 4) = "0011"
           and N2(7 downto 4) = "0011"
           and N3(7 downto 4) = "0011")
-      -- because the data processor can only process 999 therefore each N must be below 10
+-- because the data processor can only process 999 therefore each N must be below 10
           and (int1<10
           and int2<10
           and int3<10
@@ -153,7 +145,7 @@ begin
    N2 := rcvreg_32(15 downto 8);
    N3 := rcvreg_32(7 downto 0);
       if ANNNflag =  '1' then
-         -- because only the last 4 bits are signifcant to the value of the digits
+-- because only the last 4 bits are signifcant to the value of the digits
          numWords_bcd <= (N1(3 downto 0),N2(3 downto 0),N3(3 downto 0));
       else
          numWords_bcd <= ("1111","1111","1111");
@@ -174,7 +166,6 @@ begin
            when OTHERS =>
               nobytessent <= nobytessent;
         END CASE;
-        --bytesnum <= nobytessent;
     end if;
   end if;
   end process;
@@ -207,16 +198,14 @@ begin
             int2 := int2 - 9;
             hexreg(15 downto 8) <= above10 & std_logic_vector(to_unsigned(int2,4));
          end if;
-         --hex <= hexreg;
      elsif curstate_cmd = WAITFORTRANSMISION and txDone = '1' and nobytessent < 3 then 
-        hexreg(23 downto 0) <= hexreg(15 downto 0) & "00000000"; -- edited for space
-     --hex <= hexreg;
+        hexreg(23 downto 0) <= hexreg(15 downto 0) & "00000000";
      end if;
   end if;
   end process;
  -- as seqDone signal goes high for one clock cycle, we store its value until required
  --,and reset it at the end.
-  SeqdoneLatch : process(clk)
+  Seqdone_Reg : process(clk)
   begin
      if rising_edge(clk) then
         if reset = '1' then
@@ -226,7 +215,6 @@ begin
         elsif curstate_cmd = INTIAL then
            SeqDoneReg <= '0';
         end if;
-        --Seq_Done <= SeqDoneReg;
       end if;
   end process;
   stateRegister_cmd: process(clk)
