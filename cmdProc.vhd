@@ -120,19 +120,23 @@ begin
    variable A, N1, N2, N3 : std_logic_vector(7 downto 0);
    variable Int1, Int2, Int3: integer ;
    begin
+      -- splitting the 32bit word into 4 bytes to check validity of each character 
       A := rcvreg_32(31 downto 24);
       N1 := rcvreg_32(23 downto 16);
       N2 := rcvreg_32(15 downto 8);
       N3 := rcvreg_32(7 downto 0);
+      -- all ascii decimal digits start with 0011 and therfore only the last 4 bits are significant
       int1 := to_integer(unsigned(N1(3 downto 0)));
       int2 := to_integer(unsigned(N2(3 downto 0)));
       int3 := to_integer(unsigned(N3(3 downto 0)));          
       ANNNflag <= '0';
+      -- checking the input is valid below
       if  (A = "01000001"
           or A = "01100001")
           and (N1(7 downto 4) = "0011"
           and N2(7 downto 4) = "0011"
           and N3(7 downto 4) = "0011")
+      -- because the data processor can only process 999 therefore each N must be below 10
           and (int1<10
           and int2<10
           and int3<10
@@ -149,6 +153,7 @@ begin
    N2 := rcvreg_32(15 downto 8);
    N3 := rcvreg_32(7 downto 0);
       if ANNNflag =  '1' then
+         -- because only the last 4 bits are signifcant to the value of the digits
          numWords_bcd <= (N1(3 downto 0),N2(3 downto 0),N3(3 downto 0));
       else
          numWords_bcd <= ("1111","1111","1111");
