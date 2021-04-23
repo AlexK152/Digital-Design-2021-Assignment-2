@@ -119,7 +119,7 @@ begin
 ------------------------------
 -- FSM combinational logic for output signals
 
-    combi_out: process(curState, equalTrue)
+    combi_out: process(curState)
     begin
         counter1_enable <= '0'; -- default output signal values
         counter2_enable <= '0';
